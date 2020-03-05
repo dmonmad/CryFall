@@ -1,20 +1,24 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float runSpeed = 40f;
+    public float runSpeed = 1f;
 
-    public float jumpForce = 5f;
+    public float jumpForce = 3f;
 
     public bool isGrounded = false;
 
     SpriteRenderer sprite;
 
+    Animator anim;
+
     private void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
 
@@ -26,15 +30,19 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetAxisRaw("Horizontal") == 1)
+        float horizontalMovement = Input.GetAxisRaw("Horizontal");
+
+        anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
+
+        if (horizontalMovement == 1)
         {
             sprite.flipX = false;
         }
-        else if (Input.GetAxisRaw("Horizontal") == -1)
+        else if (horizontalMovement == -1)
         {
             sprite.flipX = true;
         }
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        Vector3 movement = new Vector3(horizontalMovement, 0f, 0f);
         transform.position += movement * Time.fixedDeltaTime * runSpeed;
     }
 
@@ -45,8 +53,21 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetButtonDown("Jump") && isGrounded == true)
         {
             gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            anim.SetBool("isJumping", true);
         }
     }
 
-    
+
+
+    internal void OnTouchGround()
+    {
+        isGrounded = true;
+        anim.SetBool("isJumping", false);
+    }
+
+    internal void OnLeaveGround()
+    {
+        isGrounded = false;
+    }
+
 }

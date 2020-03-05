@@ -16,11 +16,11 @@ public class SeekPlayer : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void FixedUpdate()
     {
 
         Vector3 desiredPos;
-        if(player.transform.position.y < -1.5f || player.transform.position.y > 1.5f)
+        if(player.transform.position.y < -1.5f)
         {
             desiredPos = new Vector3(player.transform.position.x, -1.5f, player.transform.position.z) + offset;
         }
