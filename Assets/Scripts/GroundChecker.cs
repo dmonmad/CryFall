@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GroundChecker : MonoBehaviour
 {
-    public GameObject player;
+    public PlayerMovement player;
 
 
 
@@ -12,7 +12,7 @@ public class GroundChecker : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Ground"))
         {
-            player.GetComponent<PlayerMovement>().isGrounded = true;
+            player.OnTouchGround();
         }
     }
 
@@ -20,7 +20,7 @@ public class GroundChecker : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Ground"))
         {
-            player.GetComponent<PlayerMovement>().isGrounded = false;
+            player.OnLeaveGround();
         }
     }
 }
