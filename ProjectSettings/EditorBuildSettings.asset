@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 1faffaf635dde3b418c054f177ef9b53
   - enabled: 1
+    path: Assets/Scenes/Paradise.unity
+    guid: 3a2a1368ac9edf14a9b8c6af31889c36
+  - enabled: 1
     path: Assets/Scenes/Blue World.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   m_configObjects: {}
