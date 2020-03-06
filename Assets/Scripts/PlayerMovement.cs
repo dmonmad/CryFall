@@ -11,6 +11,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isGrounded = false;
 
+    public bool isAlive;
+
     SpriteRenderer sprite;
 
     Animator anim;
@@ -19,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        isAlive = true;
     }
 
 
