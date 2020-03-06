@@ -15,7 +15,10 @@ public class LevelManager : MonoBehaviour
     public GameObject spawn;
     public GameObject DeathMenu;
     public GameObject PauseMenu;
-    
+    public AudioSource BackgroundAudio;
+    public AudioSource GameOverAudio;
+    public GameObject GameOverAudioObject;
+
     [SerializeField]
     private int StartPoints = 5000;
 
@@ -43,12 +46,17 @@ public class LevelManager : MonoBehaviour
         playerController.isAlive = false;
         player.GetComponent<SpriteRenderer>().enabled = false;
         player.SetActive(false);
+        BackgroundAudio.Stop();
+        GameOverAudioObject.SetActive(true);
+        GameOverAudio.Play();
         
         DeathMenu.SetActive(true);
     }
 
     public void RespawnPlayer()
     {
+        GameOverAudio.Stop();
+        BackgroundAudio.Play();
         RestartScore();
         player.transform.position = spawn.transform.position;
         player.SetActive(true);
@@ -76,10 +84,13 @@ public class LevelManager : MonoBehaviour
     public void mostrarMenu() {
         if (!PauseMenu.active) {
             PauseMenu.SetActive(true);
+            BackgroundAudio.Pause();
+
             Time.timeScale = 0f;
 
         } else {
             Time.timeScale = 1f;
+            BackgroundAudio.Play();
 
             PauseMenu.SetActive(false);
 
@@ -100,6 +111,7 @@ public class LevelManager : MonoBehaviour
 
     public void GoToMenu()
     {
+        GameOverAudio.Stop();
         SceneManager.LoadScene("Menu");
     }
 }
