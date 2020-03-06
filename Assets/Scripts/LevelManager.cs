@@ -14,6 +14,7 @@ public class LevelManager : MonoBehaviour
     public GameObject deathParticles;
     public GameObject spawn;
     public GameObject DeathMenu;
+    public GameObject PauseMenu;
     
     [SerializeField]
     private int StartPoints = 5000;
@@ -27,6 +28,8 @@ public class LevelManager : MonoBehaviour
         SpawnPlayer();
         puntuacionActual = StartPoints;
     }
+
+
 
     private void SpawnPlayer()
     {
@@ -63,9 +66,32 @@ public class LevelManager : MonoBehaviour
             puntuacionActual = (int)(puntuacionActual - Time.deltaTime);
             puntuacionText.SetText(puntuacionActual.ToString());
         }
+
+        if (Input.GetButtonDown("Cancel")) {
+                this.mostrarMenu();
+        }
         
     }
 
+    public void mostrarMenu() {
+        if (!PauseMenu.active) {
+            PauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+
+        } else {
+            Time.timeScale = 1f;
+
+            PauseMenu.SetActive(false);
+
+        }
+    }
+
+    public void restart() {
+        
+        RespawnPlayer();
+        mostrarMenu();
+    }
+    
     void RestartScore()
     {
         puntuacionActual = StartPoints;
