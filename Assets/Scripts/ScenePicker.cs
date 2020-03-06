@@ -7,7 +7,7 @@ public class ScenePicker : MonoBehaviour{
 
 
     public string[] scenes;
-    static int selector = 0;
+    static int selector = 1;
     public TextMeshProUGUI displayText;
 
     public void Awake()
@@ -58,8 +58,8 @@ public class ScenePicker : MonoBehaviour{
         displayText.SetText(scenes[selector]);
     }
 
-    public string GetSelectedLevel()
+    public void LoadSelectedLevel()
     {
-        return this.scenes[selector];
+        SceneManager.LoadScene(this.scenes[selector]);
     }
 }

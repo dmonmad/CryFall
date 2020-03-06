@@ -3,16 +3,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
 
     public TextMeshProUGUI puntuacionText;
     public GameObject player;
+    PlayerMovement playerController;
     public GameObject deathParticles;
     public GameObject spawn;
     public GameObject DeathMenu;
-
+    
     [SerializeField]
     private int StartPoints = 5000;
 
@@ -26,19 +28,16 @@ public class LevelManager : MonoBehaviour
         puntuacionActual = StartPoints;
     }
 
-    void Start()
-    {
-        
-    }
-
     private void SpawnPlayer()
     {
         player = Instantiate(player, spawn.transform.position, spawn.transform.rotation);
+        playerController = player.GetComponent<PlayerMovement>();
         Instantiate(deathParticles, player.transform.position, player.transform.rotation);
     }
 
     public void KillPlayer()
     {
+        playerController.isAlive = false;
         player.GetComponent<SpriteRenderer>().enabled = false;
         player.SetActive(false);
         
@@ -47,19 +46,34 @@ public class LevelManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
+        RestartScore();
         player.transform.position = spawn.transform.position;
         player.SetActive(true);
         player.GetComponent<SpriteRenderer>().enabled = true;
+        playerController.isAlive = true;
         Instantiate(deathParticles, player.transform.position, player.transform.rotation);
-        puntuacionText.SetText("");
         DeathMenu.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        puntuacionActual = (int)(puntuacionActual - Time.deltaTime);
-        Debug.Log(puntuacionActual);
-        puntuacionText.SetText(puntuacionActual.ToString());
+        if (playerController.isAlive)
+        {
+            puntuacionActual = (int)(puntuacionActual - Time.deltaTime);
+            puntuacionText.SetText(puntuacionActual.ToString());
+        }
+        
+    }
+
+    void RestartScore()
+    {
+        puntuacionActual = StartPoints;
+        puntuacionText.SetText("");
+    }
+
+    public void GoToMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
