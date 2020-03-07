@@ -145,7 +145,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 18476125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.63, y: -0.18550974, z: 0.45209026}
+  m_LocalPosition: {x: 0.06, y: -0.18550974, z: 0.45209026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 191697155}
@@ -443,7 +443,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c4c0278dab0252847be06c0d4d5b31b6, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.027
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -926,7 +926,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 0.8
+  orthographic size: 0.9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1766,7 +1766,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 839106244}
-        m_MethodName: Restart
+        m_MethodName: RestartPausedGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4430,8 +4430,8 @@ Tilemap:
   - first: {x: 32, y: -10, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileIndex: 6
+      m_TileSpriteIndex: 6
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -5134,9 +5134,9 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 191419908f09b914e86bbe2b5d9753ba, type: 2}
   - m_RefCount: 41
     m_Data: {fileID: 11400000, guid: 269ca1a5617fbe84aaa9c16a09f1bf46, type: 2}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 64e81be74ee0afd4ab8fbcfd9a3e6187, type: 2}
-  - m_RefCount: 41
+  - m_RefCount: 40
     m_Data: {fileID: 11400000, guid: 28b67d42cc67b9545b975b4a9109a1d7, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 7fcb963450c7fb346a28faf0dbb8212c, type: 2}
@@ -5169,10 +5169,10 @@ Tilemap:
   - m_RefCount: 41
     m_Data: {fileID: -7146085363621167518, guid: f5c4e69aead7972458761bd058ec45e6,
       type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {fileID: -6182102260794803447, guid: f5c4e69aead7972458761bd058ec45e6,
       type: 3}
-  - m_RefCount: 41
+  - m_RefCount: 40
     m_Data: {fileID: 896412959809939582, guid: f5c4e69aead7972458761bd058ec45e6, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -2014335809478388258, guid: f5c4e69aead7972458761bd058ec45e6,
