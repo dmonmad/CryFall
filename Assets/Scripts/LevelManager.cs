@@ -18,7 +18,8 @@ public class LevelManager : MonoBehaviour
     public AudioSource BackgroundAudio;
     public AudioSource GameOverAudio;
     public GameObject GameOverAudioObject;
-
+    public GameObject FinishMenu;
+    public TextMeshProUGUI ScoreFinishGame;
     [SerializeField]
     private int StartPoints = 5000;
 
@@ -97,10 +98,30 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    public void mostrarFinishMenu() {
+        if (!FinishMenu.active) {
+            FinishMenu.SetActive(true);
+
+
+            Time.timeScale = 0f;
+
+        } else {
+            Time.timeScale = 1f;
+
+            FinishMenu.SetActive(false);
+        }
+    }
+
+    public void restartGameFinished() {
+        RespawnPlayer();
+        mostrarFinishMenu();
+    }
+
     public void restart() {
         
         RespawnPlayer();
         mostrarMenu();
+
     }
     
     void RestartScore()
@@ -115,4 +136,8 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+    public void finishGame() {
+        mostrarFinishMenu();
+        ScoreFinishGame.SetText("Game Finished! \nScore: " + puntuacionActual.ToString());
+    }
 }
