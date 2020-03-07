@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
+        Time.timeScale = 1f;
         player = Instantiate(player, spawn.transform.position, spawn.transform.rotation);
         playerController = player.GetComponent<PlayerMovement>();
         Instantiate(deathParticles, player.transform.position, player.transform.rotation);
@@ -51,7 +52,7 @@ public class LevelManager : MonoBehaviour
         player.GetComponent<SpriteRenderer>().enabled = false;
         player.SetActive(false);
         GameOverAudioObject.SetActive(true);
-        DeathMenu.SetActive(true);
+        MostrarDeathMenu();
     }
 
     public void RespawnPlayer()
@@ -64,7 +65,26 @@ public class LevelManager : MonoBehaviour
         player.GetComponent<SpriteRenderer>().enabled = true;
         playerController.isAlive = true;
         Instantiate(deathParticles, player.transform.position, player.transform.rotation);
-        DeathMenu.SetActive(false);
+    }
+
+    public void MostrarDeathMenu()
+    {
+        if (!DeathMenu.activeInHierarchy)
+        {
+            DeathMenu.SetActive(true);
+            BackgroundAudio.Pause();
+
+            Time.timeScale = 0f;
+
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            BackgroundAudio.Play();
+
+            DeathMenu.SetActive(false);
+
+        }
     }
 
     // Update is called once per frame
@@ -83,7 +103,7 @@ public class LevelManager : MonoBehaviour
     }
 
     public void MostrarPauseMenu() {
-        if (!PauseMenu.active) {
+        if (!PauseMenu.activeInHierarchy) {
             PauseMenu.SetActive(true);
             BackgroundAudio.Pause();
 
@@ -99,25 +119,31 @@ public class LevelManager : MonoBehaviour
     }
 
     public void MostrarFinishMenu() {
-        if (!FinishMenu.active) {
+        if (!FinishMenu.activeInHierarchy) {
             FinishMenu.SetActive(true);
-
+            BackgroundAudio.Pause();
 
             Time.timeScale = 0f;
 
         } else {
             Time.timeScale = 1f;
-
+            BackgroundAudio.Play();
             FinishMenu.SetActive(false);
         }
     }
 
-    public void restartGameFinished() {
+    public void RestartDeadGame()
+    {
+        RespawnPlayer();
+        MostrarDeathMenu();
+    }
+
+    public void RestartFinishedGame() {
         RespawnPlayer();
         MostrarFinishMenu();
     }
 
-    public void Restart() {
+    public void RestartPausedGame() {
         
         RespawnPlayer();
         MostrarPauseMenu();

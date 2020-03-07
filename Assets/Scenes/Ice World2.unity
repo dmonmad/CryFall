@@ -810,7 +810,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 839106244}
         m_MethodName: GoToMenu
         m_Mode: 1
         m_Arguments:
@@ -1766,7 +1766,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 839106244}
-        m_MethodName: restart
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10544,7 +10544,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 839106244}
-        m_MethodName: mostrarMenu
+        m_MethodName: MostrarPauseMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11724,8 +11724,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: restartGameFinished
+      - m_Target: {fileID: 839106244}
+        m_MethodName: RestartFinishedGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
