@@ -40,6 +40,7 @@ public class LevelManager : MonoBehaviour
         player = Instantiate(player, spawn.transform.position, spawn.transform.rotation);
         playerController = player.GetComponent<PlayerMovement>();
         Instantiate(deathParticles, player.transform.position, player.transform.rotation);
+
     }
 
     public void KillPlayer()
@@ -50,7 +51,6 @@ public class LevelManager : MonoBehaviour
         BackgroundAudio.Stop();
         GameOverAudioObject.SetActive(true);
         GameOverAudio.Play();
-        
         DeathMenu.SetActive(true);
     }
 
@@ -77,12 +77,12 @@ public class LevelManager : MonoBehaviour
         }
 
         if (Input.GetButtonDown("Cancel")) {
-                this.mostrarMenu();
+                this.MostrarPauseMenu();
         }
         
     }
 
-    public void mostrarMenu() {
+    public void MostrarPauseMenu() {
         if (!PauseMenu.active) {
             PauseMenu.SetActive(true);
             BackgroundAudio.Pause();
@@ -98,7 +98,7 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void mostrarFinishMenu() {
+    public void MostrarFinishMenu() {
         if (!FinishMenu.active) {
             FinishMenu.SetActive(true);
 
@@ -114,13 +114,13 @@ public class LevelManager : MonoBehaviour
 
     public void restartGameFinished() {
         RespawnPlayer();
-        mostrarFinishMenu();
+        MostrarFinishMenu();
     }
 
-    public void restart() {
+    public void Restart() {
         
         RespawnPlayer();
-        mostrarMenu();
+        MostrarPauseMenu();
 
     }
     
@@ -136,8 +136,8 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void finishGame() {
-        mostrarFinishMenu();
+    public void FinishGame() {
+        MostrarFinishMenu();
         ScoreFinishGame.SetText("Game Finished! \nScore: " + puntuacionActual.ToString());
     }
 }

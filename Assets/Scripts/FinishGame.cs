@@ -7,7 +7,7 @@ public class FinishGame : MonoBehaviour {
 
     void OnCollisionEnter2D(Collision2D col) {
         Debug.Log(col.gameObject.name);
-        levelManager.finishGame();
+        levelManager.FinishGame();
         
     }
 }
