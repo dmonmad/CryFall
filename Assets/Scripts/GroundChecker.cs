@@ -12,7 +12,7 @@ public class GroundChecker : MonoBehaviour
     {
         if (collision.gameObject.tag.Equals("Ground"))
         {
-            player.OnTouchGround();
+            player.OnTouchGround(collision.name);
         }
     }
 
