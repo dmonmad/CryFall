@@ -45,12 +45,12 @@ public class LevelManager : MonoBehaviour
 
     public void KillPlayer()
     {
+        BackgroundAudio.Stop();
+        GameOverAudio.Play();
         playerController.isAlive = false;
         player.GetComponent<SpriteRenderer>().enabled = false;
         player.SetActive(false);
-        BackgroundAudio.Stop();
         GameOverAudioObject.SetActive(true);
-        GameOverAudio.Play();
         DeathMenu.SetActive(true);
     }
 
