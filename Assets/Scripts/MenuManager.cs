@@ -51,7 +51,7 @@ public class MenuManager : MonoBehaviour
     public void SetVolume(float volume)
     {
         audioMixer.SetFloat("volume", volume);
-        PlayerPrefs.SetFloat("VolumeLevel", volume);
+        PlayerPrefs.SetFloat("GameVolume", volume);
     }
 
     public void SetResolution(int index)
