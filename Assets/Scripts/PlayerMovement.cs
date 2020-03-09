@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Vector3 movement = new Vector3(horizontalMovement, 0f, 0f);
+
         if (isOnIce)
         {
             movement.x /= speedOnIce;
@@ -59,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            //rb.MovePosition(transform.position + movement * Time.fixedDeltaTime * runSpeed);
             transform.position += movement * Time.fixedDeltaTime * runSpeed;
         }
 
@@ -105,6 +107,16 @@ public class PlayerMovement : MonoBehaviour
         //    isOnIce = false;
         //    GetComponent<EdgeCollider2D>().sharedMaterial = null;
         //}
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Colliding with " + collision.gameObject.name);
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log("Stay Colliding with " + collision.gameObject.name);
     }
 
 }
