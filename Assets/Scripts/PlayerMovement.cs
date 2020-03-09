@@ -64,9 +64,9 @@ public class PlayerMovement : MonoBehaviour
             transform.position += movement * Time.fixedDeltaTime * runSpeed;
         }
 
-        
 
-        
+
+
     }
 
 
@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
-            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
         }
     }
@@ -90,12 +90,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.Log("IsOnIce = true");
             isOnIce = true;
-            GetComponent<EdgeCollider2D>().sharedMaterial = icyMaterial;
+            GetComponent<BoxCollider2D>().sharedMaterial = icyMaterial;
         }
         else
         {
             isOnIce = false;
-            GetComponent<EdgeCollider2D>().sharedMaterial = null;
+            GetComponent<BoxCollider2D>().sharedMaterial = null;
         }
     }
 
@@ -107,16 +107,6 @@ public class PlayerMovement : MonoBehaviour
         //    isOnIce = false;
         //    GetComponent<EdgeCollider2D>().sharedMaterial = null;
         //}
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("Colliding with " + collision.gameObject.name);
-    }
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        Debug.Log("Stay Colliding with " + collision.gameObject.name);
     }
 
 }

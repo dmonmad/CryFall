@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8765679049382911288}
   - component: {fileID: 8765679049382911236}
   - component: {fileID: 9157408401265315325}
-  - component: {fileID: 2687517626837974616}
   - component: {fileID: 3750270772204630396}
   m_Layer: 0
   m_Name: Player
@@ -123,10 +122,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   runSpeed: 1
   jumpForce: 3
-  isGrounded: 0
-  isOnIce: 0
+  isGrounded: 1
+  isOnIce: 1
   icyMaterial: {fileID: 6200000, guid: f10eb2585e15b9c4f8b4026fa4ab0cf6, type: 2}
-  speedOnIce: 20
+  speedOnIce: 5
   isAlive: 0
 --- !u!95 &9157408401265315325
 Animator:
@@ -147,27 +146,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!68 &2687517626837974616
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8765679049382911291}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.055985015, y: 0.070879914}
-  - {x: -0.05444197, y: 0.07047339}
-  - {x: -0.054304074, y: -0.069441244}
-  - {x: 0.055917647, y: -0.069613904}
-  - {x: 0.055863455, y: 0.07073151}
 --- !u!61 &3750270772204630396
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -220,7 +198,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8765679050724569826}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0928, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0722, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8765679049382911239}
@@ -239,7 +217,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.002042978}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -250,7 +228,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.107839644, y: 0.005}
+  m_Size: {x: 0.107839644, y: 0.009085955}
   m_EdgeRadius: 0
 --- !u!114 &8765679050724569824
 MonoBehaviour:
