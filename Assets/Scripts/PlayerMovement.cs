@@ -13,7 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool isOnIce = false;
     public PhysicsMaterial2D icyMaterial;
-    public float speedOnIce = 20f;
+    public float maxSpeedOnIce = 5f;
+    public float speedOnIce = 5f;
 
     public AudioSource hitSound;
     public AudioSource jumpSound;
@@ -36,36 +37,43 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Jump();
+        if (isAlive)
+            Jump();
     }
 
     private void FixedUpdate()
     {
-        float horizontalMovement = Input.GetAxisRaw("Horizontal");
-
-        anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
-
-        if (horizontalMovement == 1)
+        if (isAlive)
         {
-            sprite.flipX = false;
-        }
-        else if (horizontalMovement == -1)
-        {
-            sprite.flipX = true;
+            float horizontalMovement = Input.GetAxisRaw("Horizontal");
+
+            anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
+
+            if (horizontalMovement == 1)
+            {
+                sprite.flipX = false;
+            }
+            else if (horizontalMovement == -1)
+            {
+                sprite.flipX = true;
+            }
+
+            Vector3 movement = new Vector3(horizontalMovement, 0f, 0f);
+
+            if (isOnIce)
+            {
+                movement.x /= speedOnIce;
+                rb.AddForce(movement, ForceMode2D.Impulse);
+
+                rb.velocity = new Vector2(Mathf.Clamp(rb.velocity.x, -maxSpeedOnIce, maxSpeedOnIce), rb.velocity.y);
+            }
+            else
+            {
+                //rb.MovePosition(transform.position + movement * Time.fixedDeltaTime * runSpeed);
+                transform.position += movement * Time.fixedDeltaTime * runSpeed;
+            }
         }
 
-        Vector3 movement = new Vector3(horizontalMovement, 0f, 0f);
-
-        if (isOnIce)
-        {
-            movement.x /= speedOnIce;
-            rb.AddForce(movement, ForceMode2D.Impulse);
-        }
-        else
-        {
-            //rb.MovePosition(transform.position + movement * Time.fixedDeltaTime * runSpeed);
-            transform.position += movement * Time.fixedDeltaTime * runSpeed;
-        }
 
 
 

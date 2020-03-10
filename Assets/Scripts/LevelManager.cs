@@ -8,6 +8,9 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
 
+    public bool isSlowing;
+
+
     public TextMeshProUGUI puntuacionText;
     public GameObject player;
     PlayerMovement playerController;
@@ -38,6 +41,7 @@ public class LevelManager : MonoBehaviour
     private void SpawnPlayer()
     {
         Time.timeScale = 1f;
+        isSlowing = false;
         player = Instantiate(player, spawn.transform.position, spawn.transform.rotation);
         playerController = player.GetComponent<PlayerMovement>();
 
@@ -48,6 +52,7 @@ public class LevelManager : MonoBehaviour
         BackgroundAudio.Stop();
         GameOverAudio.Play();
         playerController.isAlive = false;
+        Instantiate(deathParticles, player.transform.position, player.transform.rotation);
         player.GetComponent<SpriteRenderer>().enabled = false;
         player.SetActive(false);
         MostrarDeathMenu();
@@ -62,7 +67,6 @@ public class LevelManager : MonoBehaviour
         player.SetActive(true);
         player.GetComponent<SpriteRenderer>().enabled = true;
         playerController.isAlive = true;
-        Instantiate(deathParticles, player.transform.position, player.transform.rotation);
     }
 
     public void MostrarDeathMenu()
@@ -71,12 +75,12 @@ public class LevelManager : MonoBehaviour
         {
             DeathMenu.SetActive(true);
             BackgroundAudio.Pause();
-
-            Time.timeScale = 0f;
+            StartCoroutine(ScaleTime(1.0f, 0.1f, 1.0f));
 
         }
         else
         {
+            StopAllCoroutines();
             Time.timeScale = 1f;
             BackgroundAudio.Play();
 
@@ -104,10 +108,10 @@ public class LevelManager : MonoBehaviour
         if (!PauseMenu.activeInHierarchy) {
             PauseMenu.SetActive(true);
             BackgroundAudio.Pause();
-
-            Time.timeScale = 0f;
+            StartCoroutine(ScaleTime(1.0f, 0.1f, 1.0f));
 
         } else {
+            StopAllCoroutines();
             Time.timeScale = 1f;
             BackgroundAudio.Play();
 
@@ -120,10 +124,10 @@ public class LevelManager : MonoBehaviour
         if (!FinishMenu.activeInHierarchy) {
             FinishMenu.SetActive(true);
             BackgroundAudio.Pause();
-
-            Time.timeScale = 0f;
+            StartCoroutine(ScaleTime(1.0f, 0.1f, 1.0f));
 
         } else {
+            StopAllCoroutines();
             Time.timeScale = 1f;
             BackgroundAudio.Play();
             FinishMenu.SetActive(false);
@@ -164,4 +168,22 @@ public class LevelManager : MonoBehaviour
         MostrarFinishMenu();
         ScoreFinishGame.SetText("Game Finished! \nScore: " + puntuacionActual.ToString());
     }
+
+    IEnumerator ScaleTime(float start, float end, float time) {     //not in Start or Update
+    
+        float lastTime = Time.realtimeSinceStartup;
+        float timer = 0.0f;
+
+        while (timer < time)
+        {
+            Time.timeScale = Mathf.Lerp(start, end, timer / time);
+            timer += (Time.realtimeSinceStartup - lastTime);
+            lastTime = Time.realtimeSinceStartup;
+            yield return null;
+        }
+
+        Time.timeScale = end;
+    }
+
+
 }

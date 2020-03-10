@@ -383,7 +383,8 @@ MonoBehaviour:
   isGrounded: 1
   isOnIce: 1
   icyMaterial: {fileID: 6200000, guid: f10eb2585e15b9c4f8b4026fa4ab0cf6, type: 2}
-  speedOnIce: 5
+  maxSpeedOnIce: 1.5
+  speedOnIce: 1.5
   hitSound: {fileID: 1727287920685187646}
   jumpSound: {fileID: 1579902687002652926}
   isAlive: 0
@@ -397,7 +398,7 @@ Animator:
   m_GameObject: {fileID: 8765679049382911291}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 6ec01046ae8163e489365c7b3e024617, type: 2}
+  m_Controller: {fileID: 9100000, guid: e45d0b5b5ed944d40a4060f1cce483ca, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -488,7 +489,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.107839644, y: 0.009085955}
+  m_Size: {x: 0.09, y: 0.009085955}
   m_EdgeRadius: 0
 --- !u!114 &8765679050724569824
 MonoBehaviour:

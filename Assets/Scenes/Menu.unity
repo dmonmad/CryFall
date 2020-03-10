@@ -6745,7 +6745,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2058610293}
         m_MethodName: SetMusicVolume
-        m_Mode: 4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -7188,8 +7188,8 @@ VideoPlayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113846337}
-  m_Enabled: 0
-  m_VideoClip: {fileID: 32900000, guid: 2d1ab0c10015fdf4480fdd15d217c7b4, type: 3}
+  m_Enabled: 1
+  m_VideoClip: {fileID: 32900000, guid: 5f164a442b7ebb44e8b9376ab61f3309, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 89894}
@@ -7200,16 +7200,14 @@ VideoPlayer:
   m_RenderMode: 1
   m_AspectRatio: 4
   m_DataSource: 0
-  m_PlaybackSpeed: 1.66
+  m_PlaybackSpeed: 0.8
   m_AudioOutputMode: 2
-  m_TargetAudioSources:
-  - {fileID: 0}
-  m_DirectAudioVolumes:
-  - 1
+  m_TargetAudioSources: []
+  m_DirectAudioVolumes: []
   m_Url: file://E:/videojuego/try-hard-try-fast/Try-Hard-or-Try-Fast/Assets/Textures/Background/main_menu/background_menu_TEST.avi
-  m_EnabledAudioTracks: 01
-  m_DirectAudioMutes: 01
-  m_ControlledAudioTrackCount: 1
+  m_EnabledAudioTracks: 
+  m_DirectAudioMutes: 
+  m_ControlledAudioTrackCount: 0
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1

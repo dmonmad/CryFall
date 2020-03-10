@@ -26,4 +26,12 @@ public class FallChecker : MonoBehaviour
             lm.KillPlayer();
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            lm.KillPlayer();
+        }
+    }
 }

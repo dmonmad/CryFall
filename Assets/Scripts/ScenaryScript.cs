@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class ScenaryScript : MonoBehaviour
 {
-
-    public Transform target;
     public Renderer bgRend;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        bgRend = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        bgRend.material.mainTextureOffset = new Vector2(target.position.x,0);
+        bgRend.material.mainTextureOffset += new Vector2(Time.deltaTime, 0);
     }
 
 }
