@@ -40,7 +40,6 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1f;
         player = Instantiate(player, spawn.transform.position, spawn.transform.rotation);
         playerController = player.GetComponent<PlayerMovement>();
-        Instantiate(deathParticles, player.transform.position, player.transform.rotation);
 
     }
 

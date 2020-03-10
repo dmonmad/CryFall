@@ -5,12 +5,12 @@ using UnityEngine;
 public class FallChecker : MonoBehaviour
 {
 
-    public LevelManager lm;
+    LevelManager lm;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        lm = FindObjectOfType<LevelManager>();
     }
 
     // Update is called once per frame
