@@ -12,12 +12,11 @@ public class LevelManager : MonoBehaviour
     public GameObject player;
     PlayerMovement playerController;
     public GameObject deathParticles;
-    public GameObject spawn;
+    GameObject spawn;
     public GameObject DeathMenu;
     public GameObject PauseMenu;
     public AudioSource BackgroundAudio;
     public AudioSource GameOverAudio;
-    public GameObject GameOverAudioObject;
     public GameObject FinishMenu;
     public TextMeshProUGUI ScoreFinishGame;
     [SerializeField]
@@ -29,6 +28,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        spawn = GameObject.FindGameObjectWithTag("Spawn");
         SpawnPlayer();
         puntuacionActual = StartPoints;
     }
@@ -51,7 +51,6 @@ public class LevelManager : MonoBehaviour
         playerController.isAlive = false;
         player.GetComponent<SpriteRenderer>().enabled = false;
         player.SetActive(false);
-        GameOverAudioObject.SetActive(true);
         MostrarDeathMenu();
     }
 

@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public PhysicsMaterial2D icyMaterial;
     public float speedOnIce = 20f;
 
+    public AudioSource hitSound;
+    public AudioSource jumpSound;
+
     public bool isAlive;
 
     SpriteRenderer sprite;
@@ -75,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
+            jumpSound.Play();
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             anim.SetBool("isJumping", true);
         }

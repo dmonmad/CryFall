@@ -48,10 +48,16 @@ public class MenuManager : MonoBehaviour
         Application.Quit();
     }
 
-    public void SetVolume(float volume)
+    public void SetMusicVolume(float volume)
     {
-        audioMixer.SetFloat("volume", volume);
-        PlayerPrefs.SetFloat("GameVolume", volume);
+        audioMixer.SetFloat("MusicVolume", volume);
+        PlayerPrefs.SetFloat("MusicVolume", volume);
+    }
+
+    public void SetSoundVolume(float volume)
+    {
+        audioMixer.SetFloat("SoundVolume", volume);
+        PlayerPrefs.SetFloat("SoundVolume", volume);
     }
 
     public void SetResolution(int index)
