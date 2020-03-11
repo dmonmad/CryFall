@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAlive)
         {
-            float horizontalMovement = Input.GetAxisRaw("Horizontal");
+            float horizontalMovement = CrossPlatformInputManager.GetAxisRaw("Horizontal");
 
             anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
 
@@ -84,7 +85,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded == true)
+        if (CrossPlatformInputManager.GetButtonDown("Jump") && isGrounded == true)
         {
             jumpSound.Play();
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
