@@ -55,8 +55,10 @@ public class PlayerPicker : MonoBehaviour
 
     public void ConfirmarSeleccion()
     {
+        Debug.Log(selectedCharacterIndex);
         PlayerPrefs.SetInt("Character", selectedCharacterIndex);
         PlayerPrefs.Save();
+        Debug.Log(PlayerPrefs.GetInt("Character").ToString());
     }
    
 }

@@ -49,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
             float horizontalMovement = CrossPlatformInputManager.GetAxisRaw("Horizontal");
 
             anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
-
+            Debug.Log(horizontalMovement);
             if (horizontalMovement == 1)
             {
                 sprite.flipX = false;
