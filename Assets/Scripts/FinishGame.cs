@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FinishGame : MonoBehaviour {
+public class FinishGame : MonoBehaviour
+{
     LevelManager levelManager;
 
     private void Start()
@@ -10,9 +11,10 @@ public class FinishGame : MonoBehaviour {
         levelManager = FindObjectOfType<LevelManager>();
     }
 
-    void OnCollisionEnter2D(Collision2D col) {
-        Debug.Log(col.gameObject.name);
-        levelManager.FinishGame();
-        
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Player")
+            levelManager.FinishGame();
+
     }
 }

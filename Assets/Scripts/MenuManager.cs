@@ -16,6 +16,9 @@ public class MenuManager : MonoBehaviour
 
     Resolution[] resolutions;
 
+    public PlayerPicker pp;
+    public ScenePicker sp;
+
     private void Start()
     {
         resolutions = Screen.resolutions;
@@ -64,6 +67,7 @@ public class MenuManager : MonoBehaviour
     {
         Resolution resolution = resolutions[index];
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+        Debug.Log(resolution.ToString());
     }
 
     public void SetQuality(int index)
@@ -86,6 +90,12 @@ public class MenuManager : MonoBehaviour
         {
             MenuOpciones.SetActive(true);
         }
+    }
+
+    public void Load()
+    {
+        pp.ConfirmarSeleccion();
+        sp.LoadSelectedLevel();
     }
 
 }

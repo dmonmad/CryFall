@@ -12,8 +12,11 @@ public class LevelManager : MonoBehaviour
 
 
     public TextMeshProUGUI puntuacionText;
-    public GameObject player;
+    public GameObject[] player;
+    public GameObject instantiatedPlayer;
+    public int selectedPlayer;
     PlayerMovement playerController;
+    PlayerHealth playerHealth;
     public GameObject deathParticles;
     GameObject spawn;
     public GameObject DeathMenu;
@@ -31,6 +34,7 @@ public class LevelManager : MonoBehaviour
 
     private void Awake()
     {
+        selectedPlayer = PlayerPrefs.GetInt("Character", 0);
         spawn = GameObject.FindGameObjectWithTag("Spawn");
         SpawnPlayer();
         puntuacionActual = StartPoints;
@@ -42,8 +46,9 @@ public class LevelManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         isSlowing = false;
-        player = Instantiate(player, spawn.transform.position, spawn.transform.rotation);
-        playerController = player.GetComponent<PlayerMovement>();
+        instantiatedPlayer = Instantiate(player[selectedPlayer], spawn.transform.position, spawn.transform.rotation);
+        playerController = instantiatedPlayer.GetComponent<PlayerMovement>();
+        playerHealth = instantiatedPlayer.GetComponent<PlayerHealth>();
 
     }
 
@@ -52,9 +57,9 @@ public class LevelManager : MonoBehaviour
         BackgroundAudio.Stop();
         GameOverAudio.Play();
         playerController.isAlive = false;
-        Instantiate(deathParticles, player.transform.position, player.transform.rotation);
-        player.GetComponent<SpriteRenderer>().enabled = false;
-        player.SetActive(false);
+        Instantiate(deathParticles, instantiatedPlayer.transform.position, instantiatedPlayer.transform.rotation);
+        instantiatedPlayer.GetComponent<SpriteRenderer>().enabled = false;
+        instantiatedPlayer.SetActive(false);
         MostrarDeathMenu();
     }
 
@@ -63,9 +68,10 @@ public class LevelManager : MonoBehaviour
         GameOverAudio.Stop();
         BackgroundAudio.Play();
         RestartScore();
-        player.transform.position = spawn.transform.position;
-        player.SetActive(true);
-        player.GetComponent<SpriteRenderer>().enabled = true;
+        instantiatedPlayer.transform.position = spawn.transform.position;
+        instantiatedPlayer.SetActive(true);
+        playerHealth.Restart();
+        instantiatedPlayer.GetComponent<SpriteRenderer>().enabled = true;
         playerController.isAlive = true;
     }
 
@@ -75,7 +81,7 @@ public class LevelManager : MonoBehaviour
         {
             DeathMenu.SetActive(true);
             BackgroundAudio.Pause();
-            StartCoroutine(ScaleTime(1.0f, 0.1f, 1.0f));
+            StartCoroutine(ScaleTime(1.0f, 0f, 1.0f));
 
         }
         else
@@ -98,19 +104,24 @@ public class LevelManager : MonoBehaviour
             puntuacionText.SetText(puntuacionActual.ToString());
         }
 
-        if (Input.GetButtonDown("Cancel")) {
-                this.MostrarPauseMenu();
+        if (Input.GetButtonDown("Cancel"))
+        {
+            this.MostrarPauseMenu();
         }
-        
+
     }
 
-    public void MostrarPauseMenu() {
-        if (!PauseMenu.activeInHierarchy) {
+    public void MostrarPauseMenu()
+    {
+        if (!PauseMenu.activeInHierarchy)
+        {
             PauseMenu.SetActive(true);
             BackgroundAudio.Pause();
-            StartCoroutine(ScaleTime(1.0f, 0.1f, 1.0f));
+            StartCoroutine(ScaleTime(1.0f, 0f, 1.0f));
 
-        } else {
+        }
+        else
+        {
             StopAllCoroutines();
             Time.timeScale = 1f;
             BackgroundAudio.Play();
@@ -120,13 +131,17 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    public void MostrarFinishMenu() {
-        if (!FinishMenu.activeInHierarchy) {
+    public void MostrarFinishMenu()
+    {
+        if (!FinishMenu.activeInHierarchy)
+        {
             FinishMenu.SetActive(true);
             BackgroundAudio.Pause();
-            StartCoroutine(ScaleTime(1.0f, 0.1f, 1.0f));
+            StartCoroutine(ScaleTime(1.0f, 0f, 1.0f));
 
-        } else {
+        }
+        else
+        {
             StopAllCoroutines();
             Time.timeScale = 1f;
             BackgroundAudio.Play();
@@ -136,22 +151,41 @@ public class LevelManager : MonoBehaviour
 
     public void RestartDeadGame()
     {
+        DemonBossAI x = FindObjectOfType<DemonBossAI>();
+        
+        if (x)
+        {
+            x.Restart();
+        }
         RespawnPlayer();
         MostrarDeathMenu();
     }
 
-    public void RestartFinishedGame() {
+    public void RestartFinishedGame()
+    {
+        DemonBossAI x = FindObjectOfType<DemonBossAI>();
+
+        if (x)
+        {
+            x.Restart();
+        }
         RespawnPlayer();
         MostrarFinishMenu();
     }
 
-    public void RestartPausedGame() {
-        
+    public void RestartPausedGame()
+    {
+        DemonBossAI x = FindObjectOfType<DemonBossAI>();
+
+        if (x)
+        {
+            x.Restart();
+        }
         RespawnPlayer();
         MostrarPauseMenu();
 
     }
-    
+
     void RestartScore()
     {
         puntuacionActual = StartPoints;
@@ -164,13 +198,15 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void FinishGame() {
+    public void FinishGame()
+    {
         MostrarFinishMenu();
         ScoreFinishGame.SetText("Game Finished! \nScore: " + puntuacionActual.ToString());
     }
 
-    IEnumerator ScaleTime(float start, float end, float time) {     //not in Start or Update
-    
+    IEnumerator ScaleTime(float start, float end, float time)
+    {     //not in Start or Update
+
         float lastTime = Time.realtimeSinceStartup;
         float timer = 0.0f;
 

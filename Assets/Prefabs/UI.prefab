@@ -1610,8 +1610,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3926e2adea8daf47834b2d187b8002b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSlowing: 0
   puntuacionText: {fileID: 2403801220257512839}
-  player: {fileID: 8765679049382911291, guid: e9984cabe71858a4f82fc14f1d5082ae, type: 3}
+  player:
+  - {fileID: 8765679049382911291, guid: e9984cabe71858a4f82fc14f1d5082ae, type: 3}
+  - {fileID: 8765679049382911291, guid: 64144eaaaea8591408ff5b8add0b81c6, type: 3}
+  - {fileID: 8765679049382911291, guid: d7b99f6fc74061e45a488409d1080911, type: 3}
+  instantiatedPlayer: {fileID: 0}
+  selectedPlayer: 0
   deathParticles: {fileID: 380221656009868237, guid: d39aea4be6f793a419bb584d943944ea,
     type: 3}
   DeathMenu: {fileID: 2403801220196804683}

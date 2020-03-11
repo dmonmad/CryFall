@@ -5,16 +5,16 @@ using UnityEngine;
 public class ScenaryMovementScript : MonoBehaviour
 {
 
-    public float prefabSpeed;
+    PlayerMovement pm;
     // Start is called before the first frame update
     void Start()
     {
-        
+        pm = FindObjectOfType<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += Vector3.right * prefabSpeed;
+        transform.position = new Vector3(pm.transform.position.x, transform.position.y, transform.position.z);
     }
 }
