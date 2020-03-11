@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ice World.unity
     guid: cee101fe9fd0b904b8b66606c5f0f167
+  - enabled: 1
+    path: Assets/Scenes/Underworld.unity
+    guid: 63993212c262c3f4f8676857274f2588
   m_configObjects: {}
