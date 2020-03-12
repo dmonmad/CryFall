@@ -46,10 +46,9 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isAlive)
         {
-            float horizontalMovement = CrossPlatformInputManager.GetAxisRaw("Horizontal");
+            float horizontalMovement = Input.GetAxisRaw("Horizontal");
 
             anim.SetFloat("Speed", Mathf.Abs(horizontalMovement));
-            Debug.Log(horizontalMovement);
             if (horizontalMovement == 1)
             {
                 sprite.flipX = false;
@@ -85,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Jump()
     {
-        if (CrossPlatformInputManager.GetButtonDown("Jump") && isGrounded == true)
+        if (Input.GetButtonDown("Jump") && isGrounded == true)
         {
             jumpSound.Play();
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
@@ -101,7 +100,6 @@ public class PlayerMovement : MonoBehaviour
         anim.SetBool("isJumping", false);
         if (type.Equals("IcyGround"))
         {
-            Debug.Log("IsOnIce = true");
             isOnIce = true;
             GetComponent<BoxCollider2D>().sharedMaterial = icyMaterial;
         }

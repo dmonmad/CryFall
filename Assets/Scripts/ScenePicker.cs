@@ -53,7 +53,6 @@ public class ScenePicker : MonoBehaviour{
         {
             selector--;
         }
-        Debug.Log(scenes[selector]);
 
         displayText.SetText(scenes[selector]);
     }

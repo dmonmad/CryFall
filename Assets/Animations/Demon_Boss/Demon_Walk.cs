@@ -24,12 +24,10 @@ public class Demon_Walk : StateMachineBehaviour
             dai.LookAtPlayer();
             if (Vector2.Distance(player.transform.position, rb.position) <= attackRange)
             {
-                Debug.Log("XD");
                 animator.SetTrigger("Attack");
             }
             else
             {
-                Debug.Log("XD2");
                 Vector2 target = new Vector2(player.transform.position.x, rb.position.y);
                 Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
                 rb.MovePosition(newPos);
@@ -40,7 +38,6 @@ public class Demon_Walk : StateMachineBehaviour
         {
             if (Vector2.Distance(new Vector2(dai.demonSpawn.transform.position.x, dai.demonSpawn.transform.position.y), rb.position) > 0.5f)
             {
-                Debug.Log("XD3");
                 Vector2 target = new Vector2(dai.demonSpawn.transform.position.x, rb.position.y);
                 Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
                 rb.MovePosition(newPos);

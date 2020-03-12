@@ -3544,8 +3544,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: e4f1fee3de32377429fd1348fae62b10, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -7910,6 +7910,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: c10178e42e6a2a64a818cd221c6798b7, type: 2}
   resolutionDropdown: {fileID: 2056147155}
+  qualityDropdown: {fileID: 108361915}
+  musicSlider: {fileID: 1998555505}
+  soundSlider: {fileID: 638120583}
   MenuOpciones: {fileID: 965662136}
   pp: {fileID: 2125915464}
   sp: {fileID: 1755817617}
@@ -7988,7 +7991,7 @@ VideoPlayer:
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_AspectRatio: 4
   m_DataSource: 0
   m_PlaybackSpeed: 0.8

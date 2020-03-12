@@ -49,13 +49,11 @@ public class DemonBossAI : MonoBehaviour
     public void IntoZone()
     {
         chasePlayer = true;
-        Debug.Log("Entrando a la zona");
     }
 
     public void ExitZone()
     {
         chasePlayer = false;
-        Debug.Log("Saliendo de la zona");
     }
 
     public void Attack()

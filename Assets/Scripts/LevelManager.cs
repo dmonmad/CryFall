@@ -8,8 +8,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
 
-    public bool isSlowing;
-
+    public AudioManager audiomanager;
+    public AudioClip[] deathEffects;
 
     public TextMeshProUGUI puntuacionText;
     public GameObject[] player;
@@ -22,7 +22,6 @@ public class LevelManager : MonoBehaviour
     public GameObject DeathMenu;
     public GameObject PauseMenu;
     public AudioSource BackgroundAudio;
-    public AudioSource GameOverAudio;
     public GameObject FinishMenu;
     public TextMeshProUGUI ScoreFinishGame;
     [SerializeField]
@@ -45,7 +44,6 @@ public class LevelManager : MonoBehaviour
     private void SpawnPlayer()
     {
         Time.timeScale = 1f;
-        isSlowing = false;
         instantiatedPlayer = Instantiate(player[selectedPlayer], spawn.transform.position, spawn.transform.rotation);
         playerController = instantiatedPlayer.GetComponent<PlayerMovement>();
         playerHealth = instantiatedPlayer.GetComponent<PlayerHealth>();
@@ -55,7 +53,7 @@ public class LevelManager : MonoBehaviour
     public void KillPlayer()
     {
         BackgroundAudio.Stop();
-        GameOverAudio.Play();
+        audiomanager.PlayRandomSound();
         playerController.isAlive = false;
         Instantiate(deathParticles, instantiatedPlayer.transform.position, instantiatedPlayer.transform.rotation);
         instantiatedPlayer.GetComponent<SpriteRenderer>().enabled = false;
@@ -65,7 +63,7 @@ public class LevelManager : MonoBehaviour
 
     public void RespawnPlayer()
     {
-        GameOverAudio.Stop();
+        audiomanager.Stop();
         BackgroundAudio.Play();
         RestartScore();
         instantiatedPlayer.transform.position = spawn.transform.position;
@@ -194,7 +192,7 @@ public class LevelManager : MonoBehaviour
 
     public void GoToMenu()
     {
-        GameOverAudio.Stop();
+        audiomanager.Stop();
         SceneManager.LoadScene("Menu");
     }
 
